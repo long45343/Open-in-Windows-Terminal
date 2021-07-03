@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Remove_Open_in_Windows_Terminal_Context.reg
+; Created by: zzjtnb
+; Created on: Jul 3, 2021
+; Tutorial: https://zzjtnb.com/blog/details/yjdkopeninwindowsterminalgly
+
+
+[-HKEY_CLASSES_ROOT\Directory\shell\OpenWTHereAsAdminContext]
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWTHereAsAdminContext]
