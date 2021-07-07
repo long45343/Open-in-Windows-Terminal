@@ -10,13 +10,20 @@
 
 ## 方式二、脚本自动生成
 
-*A project backed by [LeXtudio Inc.](https://www.lextudio.com)*
+*A project backed by [lextm](https://github.com/lextm/windowsterminal-shell/)*
 
 ### 1. 安装指南
 
 1. [安装 Windows Terminal](https://github.com/microsoft/terminal).
 2. [安装 PowerShell 7](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7).
 3. 以**管理员身份**启动 PowerShell 7 控制台 (Powershell 5 是**不行**的)，然后运行 `ps1` 目录下的 `install.ps1` 脚本，将【上下文菜单项】安装到 Windows 资源管理器。现在，菜单项已添加到 Windows 资源管理器上下文菜单了。
+
+>在提升的 PowerShell 7 控制台上从 GitHub 运行最新脚本的最快方法是
+
+```bash
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/zzjtnb/Open-in-Windows-Terminal/master/ps1/install.ps1'))
+
+```
 
 ![layout](img/all_in_one.png)
 > **图 1**: 三种安装方式，注意，一定要在**管理员模式**下安装，切记！(个人比较喜欢**默认**的 `Mini` 模式)
