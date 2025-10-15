@@ -352,7 +352,7 @@ function CreateMenuItem(
 	[Parameter(Mandatory=$true)]
 	[bool]$elevated) {
 	New-Item -Path $rootKey -Force | Out-Null
-	New-ItemProperty -Path $rootKey -Name 'MUIVerb' -PropertyType String -Value "$name(管理员)" | Out-Null
+	New-ItemProperty -Path $rootKey -Name 'MUIVerb' -PropertyType String -Value "$name" | Out-Null
 	New-ItemProperty -Path $rootKey -Name 'Icon' -PropertyType String -Value $icon | Out-Null
 	if ($elevated) {
 		New-ItemProperty -Path $rootKey -Name 'HasLUAShield' -PropertyType String -Value '' | Out-Null
@@ -393,8 +393,8 @@ function CreateProfileMenuItems(
 		CreateMenuItem $rootKey $name $profileIcon $command $false
 		CreateMenuItem $rootKeyElevated $name $profileIcon $elevated $true
 	} elseif ($layout -eq "Flat") {
-		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin_$guid"			"Open in Windows Terminal" $profileIcon $elevated $true
-		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin_$guid"	"Open in Windows Terminal" $profileIcon $elevated $true
+		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin_$guid"			"在终端中打开" $profileIcon $elevated $true
+		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin_$guid"	"在终端中打开" $profileIcon $elevated $true
 	}
 }
 
@@ -434,20 +434,20 @@ function CreateMenuItems(
 		# New-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\ContextMenus\MenuTerminal\shell'			-Force | Out-Null
 
 		New-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin'				-Force | Out-Null
-		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin'			-Name 'MUIVerb'				-PropertyType String -Value 'Open in Windows Terminal' | Out-Null
+		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin'			-Name 'MUIVerb'				-PropertyType String -Value '在终端中打开' | Out-Null
 		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin'			-Name 'Icon'				-PropertyType String -Value $icon | Out-Null
 		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalAdmin'			-Name 'ExtendedSubCommandsKey'		-PropertyType String -Value 'Directory\\ContextMenus\\MenuTerminalAdmin' | Out-Null
 
 		New-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin'		-Force | Out-Null
-		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin'	-Name 'MUIVerb'				-PropertyType String -Value 'Open in Windows Terminal' | Out-Null
+		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin'	-Name 'MUIVerb'				-PropertyType String -Value '在终端中打开' | Out-Null
 		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin'	-Name 'Icon'				-PropertyType String -Value $icon | Out-Null
 		New-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalAdmin'	-Name 'ExtendedSubCommandsKey'		-PropertyType String -Value 'Directory\\ContextMenus\\MenuTerminalAdmin' | Out-Null
 
 		New-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\ContextMenus\MenuTerminalAdmin\shell'		-Force | Out-Null
 	} elseif ($layout -eq "Mini") {
 		$elevated = "wscript.exe ""$localCache/helper.vbs"" ""$executable"" ""%V."""
-		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalMini_Admin"			"Open in Windows Terminal"	$icon $elevated $true
-		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalMini_Admin"		"Open in Windows Terminal"	$icon $elevated $true
+		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\MenuTerminalMini_Admin"			"在终端中打开"	$icon $elevated $true
+		CreateMenuItem "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Background\shell\MenuTerminalMini_Admin"		"在终端中打开"	$icon $elevated $true
 		return
 	}
 
